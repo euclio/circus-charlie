@@ -7,14 +7,15 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	private Charlie charlie;
 	private boolean keyDown = false;
 
-	public void begin(){
+	public void begin() {
 		charlieImage = getImage("resources/tempLion.jpg");
 		charlie = new Charlie(charlieImage, new Location(0, 400), canvas);
+
 		requestFocus();
 		addKeyListener(this);
 		canvas.addKeyListener(this);
 	}
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 
@@ -23,6 +24,8 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("In keypressed");
+
 		if (!keyDown) {
 
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
