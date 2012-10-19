@@ -12,12 +12,12 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	protected static final int CANVAS_WIDTH = 800;
 
 	public void begin() {
-		background = new Background(getImage("stupidBackground.jpg"), canvas);
+		background = new Background(getImage("resources/stupidBackground.jpg"), canvas);
 		charlieImage = getImage("resources/tempLion.jpg");
 		charlie = new Charlie(charlieImage, background, new Location(0, 400), canvas);
 		
 		
-		this.setSize(CANVAS_HEIGHT, CANVAS_WIDTH);
+		this.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 
 		requestFocus();
 		addKeyListener(this);

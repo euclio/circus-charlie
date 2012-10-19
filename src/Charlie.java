@@ -36,10 +36,10 @@ public class Charlie extends ActiveObject {
 	public void run() {
 		while (isAlive) {
 			if (isMovingBackward) {
-				background.move(-MOVE_DISTANCE, 0);
+				background.move(-MOVE_DISTANCE);
 				pause(FORWARD_MOVE_DELAY);
 			} else if (isMovingForward) {
-				background.move(MOVE_DISTANCE, 0);
+				background.move(MOVE_DISTANCE);
 				pause(BACKWARD_MOVE_DELAY);
 			}
 
@@ -59,13 +59,13 @@ public class Charlie extends ActiveObject {
 
 				for (int i = 0; i < JUMP_HEIGHT; i += JUMP_DISTANCE) {
 					charlie.move(0, JUMP_DISTANCE);
-					background.move(i, 0);
+					background.move(initialDistance);
 					pause(JUMP_DELAY);
 				}
 				
 				for (int i = JUMP_HEIGHT; i > 0; i -= JUMP_DISTANCE) {
 					charlie.move(0, -JUMP_DISTANCE);
-					background.move(i, 0);
+					background.move(initialDistance);
 					pause(JUMP_DELAY);
 				}
 			}
