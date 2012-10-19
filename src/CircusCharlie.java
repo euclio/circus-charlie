@@ -22,10 +22,10 @@ public class CircusCharlie extends WindowController implements KeyListener {
 		if (!keyDown) {
 
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				charlie.moveLeft();
+				charlie.moveBackwards();
 
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				charlie.moveRight();
+				charlie.moveForwards();
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				charlie.jump();
 			}
