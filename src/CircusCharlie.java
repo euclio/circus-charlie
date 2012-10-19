@@ -6,10 +6,15 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	private Image charlieImage;
 	private Charlie charlie;
 	private boolean keyDown = false;
+	
+	protected static final int CANVAS_HEIGHT = 600;
+	protected static final int CANVAS_WIDTH = 800;
 
 	public void begin() {
 		charlieImage = getImage("resources/tempLion.jpg");
 		charlie = new Charlie(charlieImage, new Location(0, 400), canvas);
+		
+		this.setSize(CANVAS_HEIGHT, CANVAS_WIDTH);
 
 		requestFocus();
 		addKeyListener(this);
@@ -24,7 +29,6 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("In keypressed");
 
 		if (!keyDown) {
 
