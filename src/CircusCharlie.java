@@ -9,7 +9,7 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	private boolean keyDown = false;
 
 	public void begin() {
-		background = new Background(getImage("stupidBackground.jpg"), new Location (0,0), canvas);
+		background = new Background(getImage("stupidBackground.jpg"), canvas);
 		charlie = new Charlie(charlieImage, background, new Location(0, 400), canvas);
 
 		requestFocus();
