@@ -15,6 +15,7 @@ public class Charlie extends ActiveObject {
 	private static final int JUMP_HEIGHT = 80;
 
 	private VisibleImage charlie;
+	private Background background;
 
 	private boolean isMovingBackward = false;
 	private boolean isMovingForward = false;
@@ -22,8 +23,9 @@ public class Charlie extends ActiveObject {
 	private boolean isAlive = false;
 	private boolean isJumping = false;
 
-	public Charlie(Image charlieImage, Location origin, DrawingCanvas canvas) {
+	public Charlie(Image charlieImage, Background background, Location origin, DrawingCanvas canvas) {
 		this.charlie = new VisibleImage(charlieImage, origin, canvas);
+		this.background=background;
 		onScreen = true;
 		isAlive = true;
 
@@ -34,10 +36,10 @@ public class Charlie extends ActiveObject {
 	public void run() {
 		while (isAlive) {
 			if (isMovingBackward) {
-				charlie.move(-MOVE_DISTANCE, 0);
+				background.move(-MOVE_DISTANCE, 0);
 				pause(FORWARD_MOVE_DELAY);
 			} else if (isMovingForward) {
-				charlie.move(MOVE_DISTANCE, 0);
+				background.move(MOVE_DISTANCE, 0);
 				pause(BACKWARD_MOVE_DELAY);
 			}
 
@@ -56,12 +58,14 @@ public class Charlie extends ActiveObject {
 				}
 
 				for (int i = 0; i < JUMP_HEIGHT; i += JUMP_DISTANCE) {
-					charlie.move(initialDistance, JUMP_DISTANCE);
+					charlie.move(0, JUMP_DISTANCE);
+					background.move(i, 0);
 					pause(JUMP_DELAY);
 				}
 				
 				for (int i = JUMP_HEIGHT; i > 0; i -= JUMP_DISTANCE) {
-					charlie.move(initialDistance, -JUMP_DISTANCE);
+					charlie.move(0, -JUMP_DISTANCE);
+					background.move(i, 0);
 					pause(JUMP_DELAY);
 				}
 			}

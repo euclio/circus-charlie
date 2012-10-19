@@ -5,11 +5,12 @@ import java.awt.event.*;
 public class CircusCharlie extends WindowController implements KeyListener {
 	private Image charlieImage;
 	private Charlie charlie;
+	private Background background;
 	private boolean keyDown = false;
 
 	public void begin() {
-		charlieImage = getImage("resources/tempLion.jpg");
-		charlie = new Charlie(charlieImage, new Location(0, 400), canvas);
+		background = new Background(getImage("stupidBackground.jpg"), new Location (0,0), canvas);
+		charlie = new Charlie(charlieImage, background, new Location(0, 400), canvas);
 
 		requestFocus();
 		addKeyListener(this);
@@ -24,7 +25,6 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("In keypressed");
 
 		if (!keyDown) {
 
