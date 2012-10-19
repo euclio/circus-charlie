@@ -10,6 +10,9 @@ public class CircusCharlie extends WindowController implements KeyListener {
 	public void begin(){
 		charlieImage = getImage("resources/tempLion.jpg");
 		charlie = new Charlie(charlieImage, new Location(0, 400), canvas);
+		requestFocus();
+		addKeyListener(this);
+		canvas.addKeyListener(this);
 	}
 	
 	@Override
