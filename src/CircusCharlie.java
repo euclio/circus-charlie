@@ -5,12 +5,15 @@ import java.awt.event.*;
 public class CircusCharlie extends WindowController implements KeyListener {
 	private Image charlieImage;
 	private Charlie charlie;
+	private Background background;
 	private boolean keyDown = false;
 	
 	protected static final int CANVAS_HEIGHT = 600;
 	protected static final int CANVAS_WIDTH = 800;
 
 	public void begin() {
+		background = new Background(getImage("stupidBackground.jpg"), canvas);
+		charlie = new Charlie(charlieImage, background, new Location(0, 400), canvas);
 		charlieImage = getImage("resources/tempLion.jpg");
 		charlie = new Charlie(charlieImage, new Location(0, 400), canvas);
 		
