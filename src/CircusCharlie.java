@@ -2,6 +2,7 @@ import objectdraw.*;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class CircusCharlie extends WindowController implements KeyListener {
     private Charlie charlie;
 
