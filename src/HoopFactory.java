@@ -2,7 +2,7 @@ import java.awt.Image;
 
 import objectdraw.*;
 
-public class RingFactory extends ActiveObject {
+public class HoopFactory extends ActiveObject {
     private static final int CREATION_DELAY = 3000;
     private static final Location RING_ORIGIN = new Location (CircusCharlie.CANVAS_WIDTH, 30);
     private static final double RING_SPEED = .2;
@@ -13,7 +13,7 @@ public class RingFactory extends ActiveObject {
     private boolean isRunning = false;
     
     
-    public RingFactory (Image ringImage, Charlie charlie, DrawingCanvas canvas) {
+    public HoopFactory (Image ringImage, Charlie charlie, DrawingCanvas canvas) {
         this.charlie = charlie;
         this.canvas = canvas;
         this.ringImage = ringImage;
@@ -26,7 +26,8 @@ public class RingFactory extends ActiveObject {
         isRunning = true;
         
         while (isRunning) {
-            new Hoop(ringImage, charlie, RING_ORIGIN, RING_SPEED, canvas);
+            Hoop theHoop = new Hoop(ringImage, charlie, RING_ORIGIN, RING_SPEED, canvas);
+
             
             pause(CREATION_DELAY);
         }
