@@ -46,7 +46,8 @@ public class Charlie extends ActiveObject {
 
             // Move charlie
             if (isJumping) {
-            	System.out.println(""+isMovingBackward +" "+ isMovingForward);
+                System.out.println("" + isMovingBackward + " "
+                        + isMovingForward);
                 // Charlie keeps horizontal speed when jumping
                 double initialDistance;
 
@@ -77,15 +78,6 @@ public class Charlie extends ActiveObject {
         this.isJumping = true;
     }
 
-    public void jumpAndMoveForward(){
-    	this.isJumping = true;
-    	this.isMovingForward = true;
-    }
-    public void jumpAndMoveBackward(){
-    	this.isJumping = true;
-    	this.isMovingForward = true;
-    }
-    
     public void moveBackward() {
         this.isMovingBackward = true;
     }
@@ -98,8 +90,8 @@ public class Charlie extends ActiveObject {
         this.isMovingBackward = false;
         this.isMovingForward = false;
     }
-    
-    public boolean overlaps (VisibleImage image) {
+
+    public boolean overlaps(VisibleImage image) {
         return charlie.overlaps(image);
     }
 
@@ -117,6 +109,5 @@ public class Charlie extends ActiveObject {
 
     public void stopJumping() {
         this.isJumping = false;
-
     }
 }
