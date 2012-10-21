@@ -1,23 +1,19 @@
 import objectdraw.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 public class CircusCharlie extends WindowController implements KeyListener {
-    private Image charlieImage;
-    private Image ringImage;
     private Charlie charlie;
-    private Background background;
 
     protected static final int CANVAS_HEIGHT = 600;
     protected static final int CANVAS_WIDTH = 800;
 
     public void begin() {
         // making charlie and the background
-        background = new Background(getImage("resources/stupidBackground.jpg"),
+        Background background = new Background(getImage("resources/stupidBackground.jpg"),
                 canvas);
-        charlieImage = getImage("resources/tempLion.jpg");
-        ringImage = getImage("resources/tempLion.jpg");
+        Image charlieImage = getImage("resources/charlie.gif");
+        Image ringImage = getImage("resources/ringOfFire.gif");
         charlie = new Charlie(charlieImage, background, new Location(0, 400),
                 canvas);
         new RingFactory(ringImage, charlie, canvas);
