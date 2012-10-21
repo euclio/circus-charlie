@@ -8,7 +8,7 @@ public class CircusCharlie extends WindowController implements KeyListener {
 
     private Charlie charlie;
     private Background background;
-    private RingFactory ringFactory;
+    private HoopFactory ringFactory;
 
     protected static final int CANVAS_HEIGHT = 600;
     protected static final int CANVAS_WIDTH = 800;
@@ -19,24 +19,24 @@ public class CircusCharlie extends WindowController implements KeyListener {
         Image charlieImage = getImage("resources/charlie.gif");
         Image ringImage = getImage("resources/ringOfFire.gif");
 
-        // set up objects essential to game
+        // Set up objects essential to game
         background = new Background(backgroundImage, canvas);
         charlie = new Charlie(charlieImage, background, CHARLIE_ORIGIN, canvas);       
-        ringFactory = new RingFactory(ringImage, charlie, canvas);
+        ringFactory = new HoopFactory(ringImage, charlie, canvas);
         
-        // set up key listener
+        // Set up key listener
         requestFocus();
         addKeyListener(this);
         canvas.addKeyListener(this);
         
-        // set window size
+        // Set window size
         this.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
     }
     
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        // Do nothing
     }
 
     @Override
@@ -54,12 +54,10 @@ public class CircusCharlie extends WindowController implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // stop moving if you were moving
+        // Stop moving if you were moving
         if (e.getKeyCode() == KeyEvent.VK_LEFT
                 || e.getKeyCode() == KeyEvent.VK_RIGHT) {
             charlie.stopMoving();
-        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            charlie.stopJumping();
         }
     }
 }
