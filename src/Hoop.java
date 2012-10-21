@@ -7,11 +7,11 @@ public class Hoop extends ActiveObject {
     
     private VisibleImage theRing;
     private Charlie charlie;
-    private double speed;
+    private double baseSpeed;
     
     public Hoop (Image ringImage, Charlie charlie, Location loc, double speed, DrawingCanvas canvas) {
         theRing = new VisibleImage(ringImage, loc, canvas);
-        this.speed = speed;
+        this.baseSpeed = speed;
         this.charlie = charlie;
                 
         start();
@@ -19,9 +19,19 @@ public class Hoop extends ActiveObject {
     
     @Override
     public void run () {
-        double moveDistance = speed * MOVE_DELAY;
-        
         while (theRing.getX() + theRing.getWidth() > 0) {
+            double speed = baseSpeed;
+            
+            if (charlie.isMovingForward() && !charlie.isJumping()) {
+                // Make speed faster
+                speed += .2;
+            } else if (charlie.isMovingBackward() && !charlie.isJumping()) {
+                // Make speed slower
+                speed -= .1;
+            }
+            
+            double moveDistance = speed * MOVE_DELAY;
+            
             theRing.move(-moveDistance, 0);
             if (charlie.overlaps(theRing)) {
                 charlie.kill();
