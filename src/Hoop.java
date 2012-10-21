@@ -2,14 +2,14 @@ import java.awt.Image;
 
 import objectdraw.*;
 
-public class Ring extends ActiveObject {
+public class Hoop extends ActiveObject {
     private static final int MOVE_DELAY = 20;
     
     private VisibleImage theRing;
     private Charlie charlie;
     private double speed;
     
-    public Ring (Image ringImage, Charlie charlie, Location loc, double speed, DrawingCanvas canvas) {
+    public Hoop (Image ringImage, Charlie charlie, Location loc, double speed, DrawingCanvas canvas) {
         theRing = new VisibleImage(ringImage, loc, canvas);
         this.speed = speed;
         this.charlie = charlie;
@@ -26,6 +26,7 @@ public class Ring extends ActiveObject {
             if (charlie.overlaps(theRing)) {
                 charlie.kill();
             }
+            pause(MOVE_DELAY);
         }
     }
 }
