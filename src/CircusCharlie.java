@@ -5,21 +5,22 @@ import java.util.*;
 
 public class CircusCharlie extends WindowController implements KeyListener {
     private Image charlieImage;
+    private Image ringImage;
     private Charlie charlie;
     private Background background;
 
     protected static final int CANVAS_HEIGHT = 600;
     protected static final int CANVAS_WIDTH = 800;
 
-    private final Set<Character> pressed = new HashSet<Character>();
-
     public void begin() {
         // making charlie and the background
         background = new Background(getImage("resources/stupidBackground.jpg"),
                 canvas);
         charlieImage = getImage("resources/tempLion.jpg");
+        ringImage = getImage("resources/tempLion.jpg");
         charlie = new Charlie(charlieImage, background, new Location(0, 400),
                 canvas);
+        new RingFactory(ringImage, charlie, canvas);
         // set window size
         this.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 
@@ -31,7 +32,7 @@ public class CircusCharlie extends WindowController implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        
     }
 
     @Override
