@@ -30,30 +30,26 @@ public class Background {
     }
 
     public void move(double dx) {
-        if (dx > 0) {
-            // Move right
-            if (tiledBG.getFirst().getX() > 0) {
-                // Cycle through images
-                tiledBG.addFirst(tiledBG.removeLast());
-            }
+        // Move each image in the list
+        for (VisibleImage i : tiledBG) {
+            i.move(dx, 0);
+        }
 
-            // Move all background images
-            for (VisibleImage i : tiledBG) {
-                i.move(dx, 0);
-            }
+        // Check that moving the images did not leave a gap
+        if (tiledBG.getFirst().getX() > 0) {
+            // Move rightmost image to leftmost position on screen to fill gap
+            VisibleImage newFirst = tiledBG.removeLast();
+            newFirst.move(2 * -CANVAS_WIDTH, 0);
 
-        } else {
-            // Move left
-            if (tiledBG.getLast().getX() < CANVAS_WIDTH) {
-                // Cycle through images
-                tiledBG.addLast(tiledBG.removeFirst());
-            }
+            // Cycle the images
+            tiledBG.addFirst(newFirst);
+        } else if (tiledBG.getLast().getX() + CANVAS_WIDTH < CANVAS_WIDTH) {
+            // Move leftmost image to rightmost position on screen to fill gap
+            VisibleImage newLast = tiledBG.removeFirst();
+            newLast.move(2 * CANVAS_WIDTH, 0);
 
-            // Move all background images
-            for (VisibleImage i : tiledBG) {
-                i.move(dx, 0);
-            }
+            // Cycle the images
+            tiledBG.addLast(newLast);
         }
     }
-
 }
