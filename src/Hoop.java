@@ -22,12 +22,12 @@ public class Hoop extends ActiveObject {
         while (theRing.getX() + theRing.getWidth() > 0) {
             double speed = baseSpeed;
             
-            if (charlie.isMovingForward() && !charlie.isJumping()) {
+            if (charlie.isMovingForward()) {
                 // Make speed faster
                 speed += .2;
-            } else if (charlie.isMovingBackward() && !charlie.isJumping()) {
+            } else if (charlie.isMovingBackward()) {
                 // Make speed slower
-                speed -= .1;
+                speed -= .15;
             }
             
             double moveDistance = speed * MOVE_DELAY;
