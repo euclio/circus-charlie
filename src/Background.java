@@ -7,7 +7,7 @@ public class Background {
     private static final int CANVAS_HEIGHT = CircusCharlie.CANVAS_HEIGHT;
     private static final int CANVAS_WIDTH = CircusCharlie.CANVAS_WIDTH;
 
-    private VisibleImage bg;
+    private VisibleImage leftBG, bg, rightBG;
 
     // Represents the tiled background. Three images cycled when necessary.
     private LinkedList<VisibleImage> tiledBG = new LinkedList<VisibleImage>();
@@ -20,16 +20,14 @@ public class Background {
                     "The background image is not the same size as the screen.");
         }
 
-        // Draw the images to the canvas in their correct positions
-        tiledBG.add(bg);
+        leftBG = new VisibleImage(backgroundImage, new Location(-bg.getWidth(),
+                0), canvas);
+        rightBG = new VisibleImage(backgroundImage, new Location(bg.getWidth(),
+                0), canvas);
 
-        VisibleImage leftBG = new VisibleImage(backgroundImage, new Location(
-                -bg.getWidth(), 0), canvas);
-        VisibleImage rightBG = new VisibleImage(backgroundImage, new Location(
-                bg.getWidth(), 0), canvas);
-
-        tiledBG.addFirst(leftBG);
-        tiledBG.addLast(rightBG);
+        bg.hide();
+        leftBG.hide();
+        rightBG.hide();
     }
 
     public void move(double dx) {
@@ -53,6 +51,24 @@ public class Background {
 
             // Cycle the images
             tiledBG.addLast(newLast);
+        }
+    }
+
+    public void show() {
+        for (VisibleImage i : tiledBG) {
+            i.show();
+        }
+    }
+
+    public void reset() {
+        // Reset images to the canvas in their correct positions
+        tiledBG.clear();
+        tiledBG.add(bg);
+        tiledBG.addFirst(leftBG);
+        tiledBG.addLast(rightBG);
+
+        for (VisibleImage i : tiledBG) {
+            i.hide();
         }
     }
 }
