@@ -4,15 +4,15 @@ import java.awt.Image;
 public class Charlie extends ActiveObject {
     private static final double FORWARD_SPEED = .4;
     private static final double BACKWARD_SPEED = .2;
+    private static final double JUMP_SPEED = .38;
 
     private static final int MOVE_DISTANCE = 2;
 
     private static final int FORWARD_MOVE_DELAY = (int) (MOVE_DISTANCE / FORWARD_SPEED);
     private static final int BACKWARD_MOVE_DELAY = (int) (MOVE_DISTANCE / BACKWARD_SPEED);
-    private static final int JUMP_DELAY = 40;
 
-    private static final int JUMP_DISTANCE = 4;
-    private static final int JUMP_HEIGHT = 80;
+    private static final int JUMP_HEIGHT = 150;
+
 
     private VisibleImage charlie;
     private Background background;
@@ -46,29 +46,31 @@ public class Charlie extends ActiveObject {
 
             // Move charlie
             if (isJumping) {
-                System.out.println("" + isMovingBackward + " "
-                        + isMovingForward);
                 // Charlie keeps horizontal speed when jumping
                 double initialDistance;
+                double moveDelay = isMovingForward ? FORWARD_MOVE_DELAY : BACKWARD_MOVE_DELAY;
 
                 if (isMovingBackward) {
                     initialDistance = BACKWARD_SPEED * BACKWARD_MOVE_DELAY;
                 } else if (isMovingForward) {
-                    initialDistance = FORWARD_SPEED * FORWARD_MOVE_DELAY;
+                    initialDistance = -FORWARD_SPEED * FORWARD_MOVE_DELAY;
                 } else {
                     initialDistance = 0;
                 }
+                
+                double jumpDistance = JUMP_SPEED * moveDelay;
+                
 
-                for (int i = 0; i < JUMP_HEIGHT; i += JUMP_DISTANCE) {
-                    charlie.move(0, -JUMP_DISTANCE);
+                for (int i = 0; i < JUMP_HEIGHT; i += jumpDistance) {
+                    charlie.move(0, -jumpDistance);
                     background.move(initialDistance);
-                    pause(JUMP_DELAY);
+                    pause(moveDelay);
                 }
 
-                for (int i = JUMP_HEIGHT; i > 0; i -= JUMP_DISTANCE) {
-                    charlie.move(0, JUMP_DISTANCE);
+                for (int i = 0; i < JUMP_HEIGHT; i += jumpDistance) {
+                    charlie.move(0, jumpDistance);
                     background.move(initialDistance);
-                    pause(JUMP_DELAY);
+                    pause(moveDelay);
                 }
             }
         }
@@ -96,8 +98,8 @@ public class Charlie extends ActiveObject {
     }
 
     public void kill() {
-        isAlive = false;
-        removeFromCanvas();
+        //isAlive = false;
+        //removeFromCanvas();
     }
 
     private void removeFromCanvas() {
@@ -109,5 +111,13 @@ public class Charlie extends ActiveObject {
 
     public void stopJumping() {
         this.isJumping = false;
+    }
+    
+    public boolean isMovingForward() {
+        return isMovingForward;
+    }
+    
+    public boolean isMovingBackward() {
+        return isMovingBackward();
     }
 }
