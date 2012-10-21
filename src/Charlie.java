@@ -90,6 +90,9 @@ public class Charlie extends ActiveObject {
         this.isMovingForward = false;
     }
     
+    public boolean overlaps (VisibleImage image) {
+        return charlie.overlaps(image);
+    }
 
     public void kill() {
         isAlive = false;
@@ -103,9 +106,8 @@ public class Charlie extends ActiveObject {
         onScreen = false;
     }
 
-	public void stopJumping() {
-		this.isJumping=false;
-		
-	}
+    public void stopJumping() {
+        this.isJumping = false;
 
+    }
 }
