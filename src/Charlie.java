@@ -82,7 +82,7 @@ public class Charlie extends ActiveObject {
     }
 
     public void moveForward() {
-        this.isMovingForward = false;
+        this.isMovingForward = true;
     }
 
     public void stopMoving() {
