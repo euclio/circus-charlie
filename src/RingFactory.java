@@ -10,21 +10,29 @@ public class RingFactory extends ActiveObject {
     private Charlie charlie;
     private Image ringImage;
     private DrawingCanvas canvas;
+    private boolean isRunning = false;
     
     
     public RingFactory (Image ringImage, Charlie charlie, DrawingCanvas canvas) {
         this.charlie = charlie;
         this.canvas = canvas;
         this.ringImage = ringImage;
-        start();
+        
+        this.start();
     }
     
     @Override
     public void run () {
-        while (true) {
+        isRunning = true;
+        
+        while (isRunning) {
             new Hoop(ringImage, charlie, RING_ORIGIN, RING_SPEED, canvas);
             
             pause(CREATION_DELAY);
         }
+    }
+
+    public void stopProduction () {
+        isRunning = false;
     }
 }
