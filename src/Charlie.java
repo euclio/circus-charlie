@@ -37,11 +37,11 @@ public class Charlie extends ActiveObject {
     public void run() {
         while (isAlive) {
             if (isMovingBackward) {
-                background.move(-MOVE_DISTANCE);
-                pause(FORWARD_MOVE_DELAY);
-            } else if (isMovingForward) {
                 background.move(MOVE_DISTANCE);
                 pause(BACKWARD_MOVE_DELAY);
+            } else if (isMovingForward) {
+                background.move(-MOVE_DISTANCE);
+                pause(FORWARD_MOVE_DELAY);
             }
 
             // Move charlie
@@ -89,6 +89,7 @@ public class Charlie extends ActiveObject {
         this.isMovingBackward = false;
         this.isMovingForward = false;
     }
+    
 
     public void kill() {
         isAlive = false;
@@ -101,4 +102,10 @@ public class Charlie extends ActiveObject {
 
         onScreen = false;
     }
+
+	public void stopJumping() {
+		this.isJumping=false;
+		
+	}
+
 }
