@@ -46,7 +46,7 @@ public class Charlie extends ActiveObject {
 
             // Move charlie
             if (isJumping) {
-
+            	System.out.println(""+isMovingBackward +" "+ isMovingForward);
                 // Charlie keeps horizontal speed when jumping
                 double initialDistance;
 
@@ -59,13 +59,13 @@ public class Charlie extends ActiveObject {
                 }
 
                 for (int i = 0; i < JUMP_HEIGHT; i += JUMP_DISTANCE) {
-                    charlie.move(0, JUMP_DISTANCE);
+                    charlie.move(0, -JUMP_DISTANCE);
                     background.move(initialDistance);
                     pause(JUMP_DELAY);
                 }
 
                 for (int i = JUMP_HEIGHT; i > 0; i -= JUMP_DISTANCE) {
-                    charlie.move(0, -JUMP_DISTANCE);
+                    charlie.move(0, JUMP_DISTANCE);
                     background.move(initialDistance);
                     pause(JUMP_DELAY);
                 }
@@ -77,6 +77,15 @@ public class Charlie extends ActiveObject {
         this.isJumping = true;
     }
 
+    public void jumpAndMoveForward(){
+    	this.isJumping = true;
+    	this.isMovingForward = true;
+    }
+    public void jumpAndMoveBackward(){
+    	this.isJumping = true;
+    	this.isMovingForward = true;
+    }
+    
     public void moveBackward() {
         this.isMovingBackward = true;
     }

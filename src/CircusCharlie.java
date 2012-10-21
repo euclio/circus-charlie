@@ -36,17 +36,17 @@ public class CircusCharlie extends WindowController implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+    	System.out.println(e.getKeyCode());
         // Checking for multiple key presses
     	pressed.add(e.getKeyChar());
     	//if the player jumps while moving, jump and keep moving
         if (pressed.size()>1) {
+        	System.out.println("Multiple Keys Pressed");
             if (pressed.contains(KeyEvent.VK_RIGHT) && e.getKeyCode() == KeyEvent.VK_SPACE) {
-                charlie.moveForward();
-            	charlie.jump();
+            	charlie.jumpAndMoveForward();
             }
             if (pressed.contains(KeyEvent.VK_LEFT) && e.getKeyCode() == KeyEvent.VK_SPACE) {
-                charlie.moveForward();
-            	charlie.jump();
+            	charlie.jumpAndMoveBackward();
             }
         }
         //if the player is only pressing one key, move or jump appropriately
@@ -66,13 +66,14 @@ public class CircusCharlie extends WindowController implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+    	System.out.println(e.getKeyCode());
         // stop moving if you were moving
         pressed.remove(e.getKeyChar());
         if(e.getKeyCode()==(KeyEvent.VK_LEFT)||e.getKeyCode()==(KeyEvent.VK_RIGHT)){
         charlie.stopMoving();
     }
         //stop jumping if you were jumping
-        else{
+        else if (e.getKeyCode() == KeyEvent.VK_SPACE){
         	charlie.stopJumping();
         }
 
