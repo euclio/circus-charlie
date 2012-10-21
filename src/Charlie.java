@@ -118,6 +118,10 @@ public class Charlie extends ActiveObject {
     }
     
     public boolean isMovingBackward() {
-        return isMovingBackward();
+        return isMovingBackward;
+    }
+    
+    public boolean isJumping() {
+        return isJumping;
     }
 }
