@@ -8,6 +8,8 @@ public class Background {
     private static final int CANVAS_WIDTH = CircusCharlie.CANVAS_WIDTH;
 
     private VisibleImage bg;
+
+    // Represents the tiled background. Three images cycled when necessary.
     private LinkedList<VisibleImage> tiledBG = new LinkedList<VisibleImage>();
 
     public Background(Image backgroundImage, DrawingCanvas canvas) {
@@ -18,6 +20,7 @@ public class Background {
                     "The background image is not the same size as the screen.");
         }
 
+        // Draw the images to the canvas in their correct positions
         tiledBG.add(bg);
 
         VisibleImage leftBG = new VisibleImage(backgroundImage, new Location(
