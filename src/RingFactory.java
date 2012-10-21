@@ -22,7 +22,7 @@ public class RingFactory extends ActiveObject {
     @Override
     public void run () {
         while (true) {
-            new Ring(ringImage, charlie, RING_ORIGIN, RING_SPEED, canvas);
+            new Hoop(ringImage, charlie, RING_ORIGIN, RING_SPEED, canvas);
             
             pause(CREATION_DELAY);
         }
