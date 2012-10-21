@@ -25,9 +25,9 @@ public class Background {
         rightBG = new VisibleImage(backgroundImage, new Location(bg.getWidth(),
                 0), canvas);
 
-        bg.hide();
-        leftBG.hide();
-        rightBG.hide();
+        tiledBG.add(bg);
+        tiledBG.addFirst(leftBG);
+        tiledBG.addLast(rightBG);
     }
 
     public void move(double dx) {
@@ -51,24 +51,6 @@ public class Background {
 
             // Cycle the images
             tiledBG.addLast(newLast);
-        }
-    }
-
-    public void show() {
-        for (VisibleImage i : tiledBG) {
-            i.show();
-        }
-    }
-
-    public void reset() {
-        // Reset images to the canvas in their correct positions
-        tiledBG.clear();
-        tiledBG.add(bg);
-        tiledBG.addFirst(leftBG);
-        tiledBG.addLast(rightBG);
-
-        for (VisibleImage i : tiledBG) {
-            i.hide();
         }
     }
 }
