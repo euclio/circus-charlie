@@ -133,7 +133,7 @@ public class Charlie extends ActiveObject {
 
     public FramedRect getHitbox() {
         FramedRect charlieHitbox = new FramedRect(charlie.getX(),
-                charlie.getY(), charlie.getHeight(), charlie.getWidth(), canvas);
+                charlie.getY()+68, charlie.getHeight()-80, charlie.getWidth(), canvas);
         charlieHitbox.hide();
         return charlieHitbox;
 
