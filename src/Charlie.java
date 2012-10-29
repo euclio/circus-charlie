@@ -25,6 +25,7 @@ public class Charlie extends ActiveObject {
     private VisibleImage charlie;
     private Background background;
     private Location origin;
+    private DrawingCanvas canvas;
 
     private boolean isMovingBackward = false;
     private boolean isMovingForward = false;
@@ -37,7 +38,7 @@ public class Charlie extends ActiveObject {
         this.charlie = new VisibleImage(charlieImage, origin, canvas);
         this.background = background;
         this.origin = origin;
-
+        this.canvas=canvas;
         onScreen = true;
         isAlive = true;
 
@@ -101,11 +102,6 @@ public class Charlie extends ActiveObject {
         this.isMovingForward = false;
     }
 
-    public boolean isTouching(Hoop hoop) {
-        return charlie.overlaps(hoop.getImage()) && charlie.getY() > hoop.getUpperBound()
-                && charlie.getY() + charlie.getHeight() < hoop.getLowerBound();
-    }
-
     public void kill() {
         isAlive = false;
         removeFromCanvas();
@@ -133,5 +129,11 @@ public class Charlie extends ActiveObject {
 
     public boolean isJumping() {
         return isJumping;
+    }
+    public FramedRect getHitBox(){
+    	FramedRect charlieHitBox = new FramedRect(charlie.getX(), charlie.getY(), charlie.getHeight(), charlie.getWidth(), canvas);
+    	charlieHitBox.hide();
+		return charlieHitBox;
+    	
     }
 }

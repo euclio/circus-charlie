@@ -61,4 +61,7 @@ public class Hoop extends ActiveObject {
     public VisibleImage getImage() {
         return theHoop;
     }
+    private boolean isTouchingCharlie(){
+    	charlie.hitBox().overlaps(hitbox);
+    }
 }
