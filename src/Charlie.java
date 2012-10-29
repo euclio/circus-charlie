@@ -7,7 +7,7 @@ public class Charlie extends ActiveObject {
     // Speeds for Charlie's movement
     private static final double FORWARD_SPEED = .4;
     private static final double BACKWARD_SPEED = .2;
-    private static final double JUMP_SPEED = .38;
+    private static final double JUMP_SPEED = .6;
 
     // The height of Charlie's jump in pixels
     private static final int JUMP_HEIGHT = 250;

@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class CircusCharlie extends WindowController implements KeyListener {
-    private static final Location CHARLIE_ORIGIN = new Location(40, 400);
+    private static final Location CHARLIE_ORIGIN = new Location(100, 360);
 
     private Charlie charlie;
     private Background background;

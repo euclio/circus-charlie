@@ -4,7 +4,7 @@ import objectdraw.*;
 
 public class HoopFactory extends ActiveObject {
     private static final int CREATION_DELAY = 3000;
-    private static final Location RING_ORIGIN = new Location (CircusCharlie.CANVAS_WIDTH, 30);
+    private static final Location RING_ORIGIN = new Location (CircusCharlie.CANVAS_WIDTH, 100);
     private static final double RING_SPEED = .2;
     
     private Charlie charlie;
