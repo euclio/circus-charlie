@@ -8,18 +8,20 @@ public class Charlie extends ActiveObject {
     private static final double FORWARD_SPEED = .4;
     private static final double BACKWARD_SPEED = .2;
     private static final double JUMP_SPEED = .38;
-    
+
     // The height of Charlie's jump in pixels
     private static final int JUMP_HEIGHT = 250;
 
     // Delay between drawing the sprites
     private static final int MOVE_DELAY = 10;
-    
+
     // Distances to move the sprites for animation
-    private static final double FORWARD_MOVE_DISTANCE = -FORWARD_SPEED * MOVE_DELAY;
-    private static final double BACKWARD_MOVE_DISTANCE = BACKWARD_SPEED * MOVE_DELAY;
+    private static final double FORWARD_MOVE_DISTANCE = -FORWARD_SPEED
+            * MOVE_DELAY;
+    private static final double BACKWARD_MOVE_DISTANCE = BACKWARD_SPEED
+            * MOVE_DELAY;
     private static final double JUMP_DISTANCE = JUMP_SPEED * MOVE_DELAY;
-    
+
     private VisibleImage charlie;
     private Background background;
     private Location origin;
@@ -35,7 +37,7 @@ public class Charlie extends ActiveObject {
         this.charlie = new VisibleImage(charlieImage, origin, canvas);
         this.background = background;
         this.origin = origin;
-        
+
         onScreen = true;
         isAlive = true;
 
@@ -46,11 +48,11 @@ public class Charlie extends ActiveObject {
     public void run() {
         while (isAlive) {
             if (isMovingBackward) {
-                background.move(BACKWARD_MOVE_DISTANCE);          
+                background.move(BACKWARD_MOVE_DISTANCE);
             } else if (isMovingForward) {
-                background.move(FORWARD_MOVE_DISTANCE);             
+                background.move(FORWARD_MOVE_DISTANCE);
             }
-            
+
             pause(MOVE_DELAY);
 
             // Move charlie
@@ -63,7 +65,7 @@ public class Charlie extends ActiveObject {
                 } else if (isMovingForward) {
                     horizontalChange = FORWARD_MOVE_DISTANCE;
                 }
-               
+
                 // Upward part of jump
                 for (int i = 0; i < JUMP_HEIGHT; i += JUMP_DISTANCE) {
                     charlie.move(0, -JUMP_DISTANCE);
@@ -99,15 +101,16 @@ public class Charlie extends ActiveObject {
         this.isMovingForward = false;
     }
 
-    public boolean overlaps(VisibleImage image) {
-        return charlie.overlaps(image);
+    public boolean isTouching(Hoop hoop) {
+        return charlie.overlaps(hoop.getImage()) && charlie.getY() > hoop.getUpperBound()
+                && charlie.getY() + charlie.getHeight() < hoop.getLowerBound();
     }
 
     public void kill() {
         isAlive = false;
         removeFromCanvas();
     }
-    
+
     public void reset() {
         charlie.moveTo(origin);
         isAlive = true;
@@ -119,15 +122,15 @@ public class Charlie extends ActiveObject {
 
         onScreen = false;
     }
-    
+
     public boolean isMovingForward() {
         return isMovingForward;
     }
-    
+
     public boolean isMovingBackward() {
         return isMovingBackward;
     }
-    
+
     public boolean isJumping() {
         return isJumping;
     }
