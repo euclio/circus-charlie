@@ -10,21 +10,18 @@ public class Hoop extends ActiveObject {
     private VisibleImage theHoop;
     private Charlie charlie;
     private double baseSpeed, fasterSpeed, slowerSpeed;
-    private FramedRect hitbox;
+    private DrawingCanvas canvas;
 
     public Hoop(Image ringImage, Charlie charlie, Location loc, double speed,
             DrawingCanvas canvas) {
+        this.canvas = canvas;
         theHoop = new VisibleImage(ringImage, loc, canvas);
 
         this.baseSpeed = speed;
         this.charlie = charlie;
 
-        hitbox = new FramedRect(theHoop.getX() + 35, theHoop.getY()
-                + theHoop.getHeight() - 30, 40, 30, canvas);
-
         fasterSpeed = speed + .2;
         slowerSpeed = speed - .15;
-        hitbox.hide();
 
         start();
     }
@@ -69,6 +66,10 @@ public class Hoop extends ActiveObject {
     }
 
     private boolean isTouchingCharlie() {
-        hitbox.overlaps(charlie.getHitbox());
+        FramedRect hitbox = new FramedRect(theHoop.getX() + 35, theHoop.getY()
+                + theHoop.getHeight() - 30, 40, 30, canvas);
+        hitbox.hide();
+        
+        return hitbox.overlaps(charlie.getHitbox());
     }
 }
